@@ -42,7 +42,7 @@
               <button
                   aria-label="choice-btn"
                   type="button"
-                  disabled="{{ $is_done }}"
+                  @disabled($is_done)
                   @class([
                     "rounded-lg bg-gray-100 p-2 font-bold",
                     $correct => $is_done ? $styleA === 'correct' : $answer?->answer === 'a',
@@ -54,7 +54,7 @@
               <button
                   aria-label="choice-btn"
                   type="button"
-                  disabled="{{ $is_done }}"
+                  @disabled($is_done)
                   @class([
                     "rounded-lg bg-gray-100 p-2 font-bold",
                     $correct => $is_done ? $styleB === 'correct' : $answer?->answer === 'b',
@@ -66,7 +66,7 @@
               <button
                 aria-label="choice-btn"
                 type="button"
-                disabled="{{ $is_done }}"
+                @disabled($is_done)
                 @class([
                   "rounded-lg bg-gray-100 p-2 font-bold",
                   $correct => $is_done ? $styleC === 'correct' : $answer?->answer === 'c',
@@ -78,7 +78,7 @@
               <button
                   aria-label="choice-btn"
                   type="button"
-                  disabled="{{ $is_done }}"
+                  @disabled($is_done)
                   @class([
                     "rounded-lg bg-gray-100 p-2 font-bold",
                     $correct => $is_done ? $styleD === 'correct' : $answer?->answer === 'd',
@@ -90,7 +90,7 @@
               <button
                   aria-label="choice-btn"
                   type="button"
-                  disabled="{{ $is_done }}"
+                  @disabled($is_done)
                   @class([
                     "rounded-lg bg-gray-100 p-2 font-bold",
                     $correct => $is_done ? $styleE === 'correct' : $answer?->answer === 'e',

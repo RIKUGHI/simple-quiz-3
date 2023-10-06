@@ -6,6 +6,7 @@ use App\Models\Answer;
 use App\Models\Question;
 use App\Models\QuestionDetail;
 use App\Models\QuestionDone;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -231,6 +232,59 @@ class QuizController extends Controller
             'correctCount' => $correctCount,
             'wrongCount' => $question->questionDetails->count() - $correctCount,
             'score' => floor(($correctCount / $question->questionDetails->count()) * 100)
+        ]);
+    }
+
+    function detailScore($id) {
+        $quiz = Question::query()->where('id', $id)->firstOrFail();
+        $students = User::query()->where('is_admin', 0)->get();
+
+        // $questionDetails = QuestionDetail::query()->with([
+        //     'answer' => function ($q) {
+        //         $q->where('answers.user_id', 3);
+        //     }
+        // ])->where('question_id', $quiz->id)
+        // ->get();
+
+        // return $questionDetails;
+
+        $students->each(function ($student) use ($quiz) {
+            $questionDetails = QuestionDetail::query()->with([
+                'answer' => function ($q) use ($student) {
+                    $q->where('answers.user_id', $student->id);
+                }
+            ])->where('question_id', $quiz->id)
+            ->get();
+
+            $correctCount = 0;
+            $wrongCount = 0;
+            $notAnswered = 0;
+
+            foreach ($questionDetails as $questionDetail) {
+                if ($questionDetail->answer && $questionDetail->correct_answer === $questionDetail->answer->answer) {
+                    $correctCount++;
+                }
+
+                if ($questionDetail->answer && $questionDetail->correct_answer !== $questionDetail->answer->answer) {
+                    $wrongCount++;
+                }
+
+                if ($questionDetail->answer === null) {
+                    $notAnswered++;
+                }
+            }
+
+            $student->score = floor($correctCount / $questionDetails->count() * 100);
+            $student->correctCount = $correctCount;
+            $student->wrongCount = $wrongCount;
+            $student->notAnswered = $notAnswered;
+        });
+
+        // return $students;
+
+        return view('pages.quiz.scores', [
+            'quiz' => $quiz,
+            'students' => $students
         ]);
     }
 }

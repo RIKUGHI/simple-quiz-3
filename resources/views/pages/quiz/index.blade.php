@@ -40,6 +40,8 @@
                                   {{ $quiz->question_details_count }}
                               </td>
                               <td class="px-6 py-4">
+                                  <a href="{{ route('quizzes.detail.score', ['id' => $quiz->id]) }}">Lihat score siswa</a>
+                                  /
                                   <a href="{{ route('quizzes.detail', ['id' => $quiz->id]) }}">Detail</a>
                                   /
                                   <a href="{{ route('quizzes.detail.create', ['id' => $quiz->id]) }}">Tambah</a>

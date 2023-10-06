@@ -41,6 +41,7 @@ Route::group([
     Route::get('/{id}', [QuizController::class, 'detail'])->name('detail');
     Route::get('/{id}/create', [QuizController::class, 'detailCreate'])->name('detail.create');
     Route::post('/{id}/create', [QuizController::class, 'detailStore'])->name('detail.store');
+    Route::get('/{id}/scores', [QuizController::class, 'detailScore'])->name('detail.score');
 });
 
 Route::group([
