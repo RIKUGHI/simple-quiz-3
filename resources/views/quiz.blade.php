@@ -44,60 +44,75 @@
                   type="button"
                   @disabled($is_done)
                   @class([
-                    "rounded-lg bg-gray-100 p-2 font-bold",
+                    "rounded-lg bg-gray-100 p-2 font-bold flex",
                     $correct => $is_done ? $styleA === 'correct' : $answer?->answer === 'a',
                     $wrong => $is_done ? $styleA === 'wrong' : false
                   ])
               >
+                a.
+                <span class="flex-auto">
                   {{ $question->items()[0]->a }}
+                </span>
               </button>
               <button
                   aria-label="choice-btn"
                   type="button"
                   @disabled($is_done)
                   @class([
-                    "rounded-lg bg-gray-100 p-2 font-bold",
+                    "rounded-lg bg-gray-100 p-2 font-bold flex",
                     $correct => $is_done ? $styleB === 'correct' : $answer?->answer === 'b',
                     $wrong => $is_done ? $styleB === 'wrong' : false
                   ])
               >
+                b.
+                <span class="flex-auto">
                   {{ $question->items()[0]->b }}
+                </span>
               </button>
               <button
                 aria-label="choice-btn"
                 type="button"
                 @disabled($is_done)
                 @class([
-                  "rounded-lg bg-gray-100 p-2 font-bold",
+                  "rounded-lg bg-gray-100 p-2 font-bold flex",
                   $correct => $is_done ? $styleC === 'correct' : $answer?->answer === 'c',
                   $wrong => $is_done ? $styleC === 'wrong' : false
                 ])
               >
+                c.
+                <span class="flex-auto"> 
                   {{ $question->items()[0]->c }}
+                </span>
               </button>
               <button
                   aria-label="choice-btn"
                   type="button"
                   @disabled($is_done)
                   @class([
-                    "rounded-lg bg-gray-100 p-2 font-bold",
+                    "rounded-lg bg-gray-100 p-2 font-bold flex",
                     $correct => $is_done ? $styleD === 'correct' : $answer?->answer === 'd',
                     $wrong => $is_done ? $styleD === 'wrong' : false
                   ])
               >
+                d.
+                <span class="flex-auto">
                   {{ $question->items()[0]->d }}
+                </span>
               </button>
               <button
                   aria-label="choice-btn"
                   type="button"
                   @disabled($is_done)
                   @class([
-                    "rounded-lg bg-gray-100 p-2 font-bold",
+                    "rounded-lg bg-gray-100 p-2 font-bold flex",
                     $correct => $is_done ? $styleE === 'correct' : $answer?->answer === 'e',
                     $wrong => $is_done ? $styleE === 'wrong' : false
                   ])
               >
+                e.
+                <span class="flex-auto">
                   {{ $question->items()[0]->e }}
+                </span>
               </button>
 
               @if ($is_done && $question->items()[0]->explain)
