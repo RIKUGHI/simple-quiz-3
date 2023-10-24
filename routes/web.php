@@ -60,6 +60,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/material', function () {
+    return view('material');
+})->middleware(['auth'])->name('material');
+
+Route::get('/my-profile', function () {
+    return view('my-profile');
+})->middleware(['auth', 'student'])->name('my-profile');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

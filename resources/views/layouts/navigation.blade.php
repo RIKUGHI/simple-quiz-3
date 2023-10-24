@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('material')" :active="request()->routeIs('material')">
+                        Materi
+                    </x-nav-link>
                     @if (Auth::user()->is_admin)
                         <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
                             Student
@@ -23,6 +26,9 @@
                             Quiz
                         </x-nav-link>
                     @else
+                        <x-nav-link :href="route('my-profile')" :active="request()->routeIs('my-profile')">
+                            Profile
+                        </x-nav-link>
                         <x-nav-link :href="route('my-quizzes.index')" :active="request()->routeIs('my-quizzes.index')">
                             Quiz
                         </x-nav-link>
